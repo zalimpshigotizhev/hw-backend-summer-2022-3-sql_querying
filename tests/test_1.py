@@ -47,6 +47,7 @@ async def db(loop, config: DatabaseConfig):
             port=config.port,
         ),
         echo=True,
+        future=True,
     )
 
     yield engine
