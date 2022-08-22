@@ -4,7 +4,7 @@ jobs:
   runner-job:
     runs-on: ubuntu-latest
     env:
-      IMAGE: 'ktshub/backend-summer-2021:task-0491cb2c-a7e0-4e7d-bcd3-a15fe091a373'
+      IMAGE: 'ktshub/backend-summer-2021:task-6ff8c4a9-3f65-442b-b91c-1f5aaa9c3581'
       CONFIGPATH: /go/code/source/tests/config.yml
       PYTHONPATH: /go/code/source
     services:
