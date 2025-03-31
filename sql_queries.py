@@ -2,14 +2,9 @@
 # Duration - разница между scheduled_arrival и scheduled_departure.
 # В ответе должно быть 2 колонки [flight_no, duration]
 TASK_1_QUERY = """
+select flight_no, scheduled_arrival - scheduled_departure as duration
+from flights order by duration limit 5;
 """
-#  flight_no | duration
-# -----------+----------
-#  PG0235    | 00:25:00
-#  PG0234    | 00:25:00
-#  PG0233    | 00:25:00
-#  PG0235    | 00:25:00
-#  PG0234    | 00:25:00
 
 
 # Вывести топ 3 рейса по числу упоминаний в таблице flights
