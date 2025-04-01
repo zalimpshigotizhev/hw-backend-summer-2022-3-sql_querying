@@ -23,11 +23,22 @@ class DatabaseConfig:
 @pytest.fixture
 def config() -> DatabaseConfig:
     config_path = os.environ.get("CONFIGPATH")
+    print(f"CONFIGPATH: {config_path}")  # Отладочный вывод
+
+    if not config_path:
+        raise ValueError("Переменная CONFIGPATH не установлена!")
+
+    if not os.path.exists(config_path):
+        raise FileNotFoundError(f"Файл конфига не найден: {config_path}")
+
     with open(config_path, "r") as f:
         raw_config = yaml.safe_load(f)
+        print(f"Содержимое YAML: {raw_config}")  # Что реально загружено?
+
+    if not raw_config or "database" not in raw_config:
+        raise ValueError("YAML-файл не содержит ключ 'database'!")
 
     return DatabaseConfig(**raw_config["database"])
-
 
 @pytest.fixture(scope="session")
 def loop() -> AbstractEventLoop:
@@ -53,3 +64,8 @@ async def engine(
     yield engine
 
     await engine.dispose()
+
+
+if __name__ == "__main__":
+    config_path = os.environ.get("CONFIGPATH")
+    print(config_path)
